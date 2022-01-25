@@ -2093,8 +2093,6 @@ class SportControllers extends Controller
         }
 
         elseif($marzadzev == '3m'){
-
-
             if($motecum == '1'){
                  $kataroxMarzik->v3_1m = -$performerInfo->karatvoxQash;
              } else if($motecum == '2'){
@@ -2106,7 +2104,6 @@ class SportControllers extends Controller
              else if($motecum == 'record'){
               $kataroxMarzik->v3_record =-$performerInfo->karatvoxQash;
              }
-
          }
 
 

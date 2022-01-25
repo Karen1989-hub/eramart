@@ -144,6 +144,25 @@
                               display: flex }
 
                 #clng{opacity:0;}
+        .country{
+            width: 200px;
+            height: 300px;
+            border: 1px solid;
+            float: left;
+        }
+        .flag{
+            width: 100%;
+            height: 150px;
+            border: 1px solid;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .countryName{
+            font-size: 2em;
+        }
+        .teamName{
+            font-size: 2em;
+        }
     </style>
 </head>
 <body>
@@ -176,6 +195,11 @@
      <div id="coacհname"><p>Մարզիչի անունը</p><h2>@if(isset($marzikInfo->coacհName)){{ $marzikInfo->coacհName}}@endif</h2></div>
 </div>
 <div id="time">
+    <div class="country">
+        <div class="flag" style="background-image: url('@if(isset($marzikInfo->getCountryInfo()->flag_img)){{ asset("flags/".$marzikInfo->getCountryInfo()->flag_img) }}@endif');"></div>
+        <div class="countryName">@if(isset($marzikInfo->getCountryInfo()->name)){{$marzikInfo->getCountryInfo()->name}}@endif</div>
+        <div class="teamName">@if(isset($marzikInfo->team)){{$marzikInfo->team}}@endif</div>
+    </div>
     <div id="tm">
     <div id="tmr">
         <p id="jamanakr"></p>
