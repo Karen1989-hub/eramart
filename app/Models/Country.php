@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','flag_img'];
 
     public function getCountryById($id){
         return Model::find($id);

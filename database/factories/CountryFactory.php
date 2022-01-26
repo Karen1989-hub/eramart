@@ -22,8 +22,8 @@ class CountryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Austria',
-            'flag_img' => 'austria.gif'
+            'name' => 'albania.gif',
+            'flag_img' => 'Albania.gif'
         ];
     }
 }

@@ -1905,14 +1905,13 @@ class SportControllers extends Controller
         return back();
 
     }
-    public function monitor(Request $request){
+    public function monitor(){
         $marzikInfo = marzik::where('performer',1)->first();
         $parformer = Performer::first();
         $mrcavar1 = MrcInfo::where('id',1)->first();
         $mrcavar2 = MrcInfo::where('id',2)->first();
         $mrcavarGlx = MrcInfo::where('id',3)->first();
 
-         //dd($mrcavar1->mrcColor,$mrcavar2,$mrcavarGlx);
          $timer = Timer::where('id',1)->first()->timer;
 
         $arr = ['marzikInfo'=>$marzikInfo,
