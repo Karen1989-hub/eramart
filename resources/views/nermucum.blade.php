@@ -106,6 +106,11 @@
             <input id="timerStop" type="submit"  value="Stop">
         </form>
 
+        <h2>Ստանալ Excel ֆայլ</h2>
+        <form action="{{route('createMarziksExel')}}" method="get">
+            <button type="submit">download</button>
+        </form>
+
 
         <h2>Մարզիկների տվյալներ</h2>
         <h2>44 կգ քաշային կարգ</h2>

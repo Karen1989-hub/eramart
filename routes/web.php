@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SportControllers;
 use App\Http\Controllers\TabloController;
+use App\Http\Controllers\ExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::post('/chackMrcavar',[SportControllers::class,'chackMrcavar'])->name('cha
 Route::post('/updateTimer',[SportControllers::class,'updateTimer'])->name('updateTimer');
 Route::post('/stopTimer',[TabloController::class,'stopTimer'])->name('stopTimer');
 
-
+Route::get('/createMarziksExel',[ExcelController::class,'createMarziksExel'])->name('createMarziksExel');
+Route::get('/marzikstest',function (){
+    return view('exportExcel.marziks');
+});
 
 
