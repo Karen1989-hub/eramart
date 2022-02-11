@@ -3797,12 +3797,14 @@
         <th> <div class="ud59"> 4վ,1մ</div></th>
         <th> <div class="ud59"> 4վ,2մ</div></th>
         <th> <div class="ud59"> 4վ,3մ</div></th>
-        <th> <div class="ud59"> 4վ մեծագույն  <form action="{{ route('nermucum') }}" method="post">
+        <th> <div class="ud59"> 4վ մեծագույն
+        <form action="{{ route('nermucum') }}" method="post">
             @csrf
             <input type="hidden" value="110" name="weightClassFilter">
             <input type="hidden" value="v4_summ" name="weightClassFilterSumm">
             <input type="submit" value="filtrel" class="filtr">
-        </form></div></th>
+        </form>
+        </div></th>
         <th> <div class="ud59"> 4վ ռեկորդ</div></th>
         <th><button id="bt60" onclick ="f60()">
             min <br>max
@@ -3811,12 +3813,14 @@
         <th> <div class="ud60">5վ,1մ</div> </th>
         <th> <div class="ud60"> 5վ,2մ</div></th>
         <th> <div class="ud60"> 5վ,3մ</div></th>
-        <th> <div class="ud60"> 5վ մեծագույն  <form action="{{ route('nermucum') }}" method="post">
+        <th> <div class="ud60"> 5վ մեծագույն
+        <form action="{{ route('nermucum') }}" method="post">
             @csrf
             <input type="hidden" value="110" name="weightClassFilter">
             <input type="hidden" value="v5_summ" name="weightClassFilterSumm">
             <input type="submit" value="filtrel" class="filtr">
-        </form></div></th>
+        </form>
+            </div></th>
         <th> <div class="ud60"> 5վ ռեկորդ</div></th>
 
         <th>Ընդհանուր գումար <input type="hidden" value="110" name="weightClassFilter">
@@ -3862,42 +3866,70 @@
        <input
             @if($val->v1_1m < 0)
                 style="background: red";
-            @endif
-
-            @if($val->v1_1m > 0)
+            @elseif($val->v1_1m > 1)
                 style="background: green";
+            @elseif($val->v1_1m >= 0 && $val->v1_1m <= 1)
+                style="background: #fff";
             @endif
 
 
-             class="inp56" type="text" name="v1_1m" value="{{ $val->v1_1m}}" >
+             class="inp56" type="text" name="v1_1m" value="@if($val->v1_1m < 0){{-1*$val->v1_1m}}
+       @elseif($val->v1_1m > 0 && $val->v1_1m <= 1)
+           <?php
+           $nofiltrVal = $val->v1_1m * pow(10,strlen(strval($val->v1_1m))-1);
+           if(strlen(strval($nofiltrVal))>3){
+               $nofiltrVal = $nofiltrVal/10;
+           }
+           echo $nofiltrVal;
+           ?>
+            @else{{$val->v1_1m}} @endif" >
             </td>
 
 
         <td>
             <input
-            @if($val->v1_2m < 0)
-            style="background: red";
-        @endif
+                @if($val->v1_2m < 0)
+                style="background: red";
+                @elseif($val->v1_2m > 1)
+                style="background: green";
+                @elseif($val->v1_2m >= 0 && $val->v1_2m <= 1)
+                style="background: #fff";
+                @endif
 
-        @if($val->v1_2m > 0)
-            style="background: green";
-        @endif
 
-            class="inp56" type="text" name="v1_2m" value="{{ $val->v1_2m}}" >
-        </td>
+                class="inp56" type="text" name="v1_2m" value="@if($val->v1_2m < 0){{-1*$val->v1_2m}}
+            @elseif($val->v1_2m > 0 && $val->v1_2m <= 1)
+            <?php
+            $nofiltrVal = $val->v1_1m * pow(10,strlen(strval($val->v1_2m))-1);
+            if(strlen(strval($nofiltrVal))>3){
+                $nofiltrVal = $nofiltrVal/10000;
+            }
+            echo $nofiltrVal;
+            ?>
+            @else{{$val->v1_2m}} @endif " >
+            </td>
+            <td>
+                <input
+                    @if($val->v1_3m < 0)
+                    style="background: red";
+                    @elseif($val->v1_3m > 1)
+                    style="background: green";
+                    @elseif($val->v1_3m >= 0 && $val->v1_3m <= 1)
+                    style="background: #fff";
+                    @endif
 
-        <td>
-            <input
-            @if($val->v1_3m < 0)
-            style="background: red";
-        @endif
 
-        @if($val->v1_3m > 0)
-            style="background: green";
-        @endif
-
-            class="inp56" type="text" name="v1_3m" value="{{ $val->v1_3m}}" >
-        </td>
+                    class="inp56" type="text" name="v1_3m" value="@if($val->v1_3m < 0){{-1*$val->v1_3m}}
+                @elseif($val->v1_3m > 0 && $val->v1_3m <= 1)
+                <?php
+                $nofiltrVal = $val->v1_1m * pow(10,strlen(strval($val->v1_3m))-1);
+                if(strlen(strval($nofiltrVal))>3){
+                    $nofiltrVal = $nofiltrVal/10;
+                }
+                echo $nofiltrVal;
+                ?>
+                @else{{$val->v1_3m}} @endif" >
+            </td>
         <td>
             <input  class="inp56" type="text" name="v1_summ" value="{{ $val->v1_summ}}">
         </td>
@@ -4050,18 +4082,9 @@
 
         </form>
  <td><a href="/deleteMarzik/{{ $val->id}}"> <button>Ջնջել</button></td>
-         </tr>
-
-
-
+    </tr>
           @endforeach
                 </table>
-
-
-
-
-
-
                 <br>
 <br>
 

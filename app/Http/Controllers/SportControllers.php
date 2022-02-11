@@ -12,6 +12,10 @@ use App\Models\Country;
 
 class SportControllers extends Controller
 {
+    protected function chengIntToDubl($val){
+            $val = (int)$val;
+            return $val/pow(10,(int)strlen(strval($val)));
+    }
     public function nermucum(Request $request){
         // $weightClassDoingCount = marzik::where('weightClass',44)->where('v1_summ',null)->get();
         // if(count($weightClassDoingCount) != 0){
@@ -1711,27 +1715,70 @@ class SportControllers extends Controller
 
         $marzikId=$request->input('marzikId');
 
+        //$v1_2m = $this->chengIntToDubl((float)$v1_2m);
+
         $update=marzik::find($marzikId);
-        $update->v1_1m=$v1_1m;
-        $update->v1_2m=$v1_2m;
-        $update->v1_3m=$v1_3m;
-        $update->v1_record=$v1_record;
-        $update->v2_1m=$v2_1m;
-        $update->v2_2m=$v2_2m;
-        $update->v2_3m=$v2_3m;
-        $update->v2_record=$v2_record;
-        $update->v3_1m=$v3_1m;
-        $update->v3_2m=$v3_2m;
-        $update->v3_3m=$v3_3m;
-        $update->v3_record=$v3_record;
-        $update->v4_1m=$v4_1m;
-        $update->v4_2m=$v4_2m;
-        $update->v4_3m=$v4_3m;
-        $update->v4_record=$v4_record;
-        $update->v5_1m=$v5_1m;
-        $update->v5_2m=$v5_2m;
-        $update->v5_3m=$v5_3m;
-        $update->v5_record=$v5_record;
+        if($update->v1_1m==0 || $update->v1_1m=="" || $update->v1_1m==null){
+            $update->v1_1m=$this->chengIntToDubl($v1_1m);
+        }
+        if($update->v1_2m==0 || $update->v1_2m=="" || $update->v1_2m==null){
+            $update->v1_2m=$this->chengIntToDubl($v1_2m);
+        }
+        if($update->v1_3m==0 || $update->v1_3m=="" || $update->v1_3m==null){
+            $update->v1_3m=$this->chengIntToDubl($v1_3m);
+        }
+        if($update->v1_record==0 || $update->v1_record=="" || $update->v1_record==null){
+            $update->v1_record=$this->chengIntToDubl($v1_record);
+        }
+        if($update->v2_1m==0 || $update->v2_1m=="" || $update->v2_1m==null){
+            $update->v2_1m=$this->chengIntToDubl($v2_1m);
+        }
+        if($update->v2_2m==0 || $update->v2_2m=="" || $update->v2_2m==null){
+            $update->v2_2m=$this->chengIntToDubl($v2_2m);
+        }
+        if($update->v2_3m==0 || $update->v2_3m=="" || $update->v2_3m==null){
+            $update->v2_3m=$this->chengIntToDubl($v2_3m);
+        }
+        if($update->v2_record==0 || $update->v2_record=="" || $update->v2_record==null){
+            $update->v2_record=$this->chengIntToDubl($v2_record);
+        }
+        if($update->v3_1m==0 || $update->v3_1m=="" || $update->v3_1m==null){
+            $update->v3_1m=$this->chengIntToDubl($v3_1m);
+        }
+        if($update->v3_2m==0 || $update->v3_2m=="" || $update->v3_2m==null){
+            $update->v3_2m=$this->chengIntToDubl($v3_2m);
+        }
+        if($update->v3_3m==0 || $update->v3_3m=="" || $update->v3_3m==null){
+            $update->v3_3m=$this->chengIntToDubl($v3_3m);
+        }
+        if($update->v3_record==0 || $update->v3_record=="" || $update->v3_record==null){
+            $update->v3_record=$this->chengIntToDubl($v3_record);
+        }
+        if($update->v4_1m==0 || $update->v4_1m=="" || $update->v4_1m==null){
+            $update->v4_1m=$this->chengIntToDubl($v4_1m);
+        }
+        if($update->v4_2m==0 || $update->v4_2m=="" || $update->v4_2m==null){
+            $update->v4_2m=$this->chengIntToDubl($v4_2m);
+        }
+        if($update->v4_3m==0 || $update->v4_3m=="" || $update->v4_3m==null){
+            $update->v4_3m=$this->chengIntToDubl($v4_3m);
+        }
+        if($update->v4_record==0 || $update->v4_record=="" || $update->v4_record==null){
+            $update->v4_record=$this->chengIntToDubl($v4_record);
+        }
+        if($update->v5_1m==0 || $update->v5_1m=="" || $update->v5_1m==null){
+            $update->v5_1m=$this->chengIntToDubl($v5_1m);
+        }
+        if($update->v5_2m==0 || $update->v5_2m=="" || $update->v5_2m==null){
+            $update->v5_2m=$this->chengIntToDubl($v5_2m);
+        }
+        if($update->v5_3m==0 || $update->v5_3m=="" || $update->v5_3m==null){
+            $update->v5_3m=$this->chengIntToDubl($v5_3m);
+        }
+        if($update->v5_record==0 || $update->v5_record=="" || $update->v5_record==null){
+            $update->v5_record=$this->chengIntToDubl($v5_record);
+        }
+
         $update->save();
 
         $marzik = marzik::find($marzikId);
@@ -1887,10 +1934,22 @@ class SportControllers extends Controller
 
         $marzik = marzik::find($kataroxId);
         $marzik->performer = true;
+
         $marzik->save();
+
+        $katarvoxQash = 0;
+        $marzik = marzik::find($kataroxId)->toArray();
+        if($marzik['v1_1m'] > 0 && $marzik['v1_1m']<1){
+            $nofiltrVal = $marzik['v1_1m'] * pow(10,strlen(strval($marzik['v1_1m']))-1);
+            if(strlen(strval($nofiltrVal))>3){
+                $nofiltrVal = $nofiltrVal/10;
+            }
+            $katarvoxQash = $nofiltrVal;
+        }
 
         $performer = Performer::find(1);
         $performer->performer = $kataroxId;
+        $performer->karatvoxQash = $katarvoxQash;
         $performer->save();
 
         for($i=1;$i<4;$i++){
@@ -1934,7 +1993,6 @@ class SportControllers extends Controller
         $update->mrcColor = $mrcColor;
         $update->save();
 
-
         $performerInfo = Performer::first();
 
         $arrMrcInfo = MrcInfo::all();
@@ -1950,198 +2008,43 @@ class SportControllers extends Controller
             }
         }
 
-        if($greenCount >= 2){
-            if($colorCount == 3){
+            $kataroxMarzik = marzik::find($performerInfo->performer);
+            $marzadzev = $performerInfo->marzadzev;
+            $motecum = $performerInfo->motecum;
+            $varjadzev = '';
+            $motec = '';
+            switch ($marzadzev){
+                case "1m": $varjadzev = "v1_";break;
+                case "2m": $varjadzev = "v2_";break;
+                case "3m": $varjadzev = "v3_";break;
+                case "4m": $varjadzev = "v4_";break;
+                case "5m": $varjadzev = "v5_";
+            }
+            switch ($motecum){
+                case 1: $motec = "1m";break;
+                case 2: $motec = "2m";break;
+                case 3: $motec = "3m";
+            }
+
+        if($greenCount >= 2) {
+            if ($colorCount == 3) {
                 $update = Timer::find(1);
                 $update->timer = 5;
                 $update->save();
             }
-
-
-            $kataroxMarzik = marzik::find($performerInfo->performer);
-            $marzadzev = $performerInfo->marzadzev;
-            $motecum = $performerInfo->motecum;
-
-           if($marzadzev == '1m'){
-               if($motecum == '1'){
-                   $kataroxMarzik->v1_1m = $performerInfo->karatvoxQash;
-               } else if($motecum == '2'){
-                $kataroxMarzik->v1_2m = $performerInfo->karatvoxQash;
-               }
-               else if($motecum == '3'){
-                $kataroxMarzik->v1_3m = $performerInfo->karatvoxQash;
-               }
-               else if($motecum == 'record'){
-                $kataroxMarzik->v1_record = $performerInfo->karatvoxQash;
-               }
-           }
-
-
-           elseif($marzadzev == '2m'){
-
-
-           if($motecum == '1'){
-                $kataroxMarzik->v2_1m = $performerInfo->karatvoxQash;
-            } else if($motecum == '2'){
-             $kataroxMarzik->v2_2m = $performerInfo->karatvoxQash;
-            }
-            else if($motecum == '3'){
-             $kataroxMarzik->v2_3m = $performerInfo->karatvoxQash;
-            }
-            else if($motecum == 'record'){
-             $kataroxMarzik->v2_record = $performerInfo->karatvoxQash;
-            }
-
+            $activeFilde = $varjadzev.$motec;
+            $update = marzik::find($performerInfo->performer);
+            $update->$activeFilde = $performerInfo->karatvoxQash;
+            $update->save();
+        } else {
+            $activeFilde = $varjadzev.$motec;
+            $update = marzik::find($performerInfo->performer);
+            $update->$activeFilde = -1*$performerInfo->karatvoxQash;
+            $update->save();
         }
 
-        elseif($marzadzev == '3m'){
 
-
-            if($motecum == '1'){
-                 $kataroxMarzik->v3_1m = $performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v3_2m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v3_3m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v3_record = $performerInfo->karatvoxQash;
-             }
-
-         }
-
-
-         elseif($marzadzev == '4m'){
-
-
-            if($motecum == '1'){
-                 $kataroxMarzik->v4_1m = $performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v4_2m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v4_3m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v4_record = $performerInfo->karatvoxQash;
-             }
-
-         }
-
-         elseif($marzadzev == '5m'){
-
-
-            if($motecum == '1'){
-                 $kataroxMarzik->v5_1m = $performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v5_2m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v5_3m = $performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v5_record = $performerInfo->karatvoxQash;
-             }
-         }
-                   $kataroxMarzik->save();
-
-        }
-        else{
-            if($colorCount == 3){
-                $update = Timer::find(1);
-                $update->timer = 5;
-                $update->save();
-            }
-
-
-            $kataroxMarzik = marzik::find($performerInfo->performer);
-            $marzadzev = $performerInfo->marzadzev;
-            $motecum = $performerInfo->motecum;
-
-           if($marzadzev == '1m'){
-               if($motecum == '1'){
-                   $kataroxMarzik->v1_1m = -$performerInfo->karatvoxQash;
-               } else if($motecum == '2'){
-                $kataroxMarzik->v1_2m = -$performerInfo->karatvoxQash;
-               }
-               else if($motecum == '3'){
-                $kataroxMarzik->v1_3m = -$performerInfo->karatvoxQash;
-               }
-               else if($motecum == 'record'){
-                $kataroxMarzik->v1_record = -$performerInfo->karatvoxQash;
-               }
-           }
-
-
-           elseif($marzadzev == '2m'){
-
-
-           if($motecum == '1'){
-                $kataroxMarzik->v2_1m = -$performerInfo->karatvoxQash;
-            } else if($motecum == '2'){
-             $kataroxMarzik->v2_2m = -$performerInfo->karatvoxQash;
-            }
-            else if($motecum == '3'){
-             $kataroxMarzik->v2_3m = -$performerInfo->karatvoxQash;
-            }
-            else if($motecum == 'record'){
-             $kataroxMarzik->v2_record = -$performerInfo->karatvoxQash;
-            }
-
-        }
-
-        elseif($marzadzev == '3m'){
-            if($motecum == '1'){
-                 $kataroxMarzik->v3_1m = -$performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v3_2m = -$performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v3_3m = -$performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v3_record =-$performerInfo->karatvoxQash;
-             }
-         }
-
-
-         elseif($marzadzev == '4m'){
-
-
-            if($motecum == '1'){
-                 $kataroxMarzik->v4_1m = -$performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v4_2m = -$performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v4_3m = -$performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v4_record = -$performerInfo->karatvoxQash;
-             }
-
-         }
-
-         elseif($marzadzev == '5m'){
-
-
-            if($motecum == '1'){
-                 $kataroxMarzik->v5_1m = -$performerInfo->karatvoxQash;
-             } else if($motecum == '2'){
-              $kataroxMarzik->v5_2m = -$performerInfo->karatvoxQash;
-             }
-             else if($motecum == '3'){
-              $kataroxMarzik->v5_3m =-$performerInfo->karatvoxQash;
-             }
-             else if($motecum == 'record'){
-              $kataroxMarzik->v5_record = -$performerInfo->karatvoxQash;
-             }
-         }
-                   $kataroxMarzik->save();
-
-        }
-return back();
+    return back();
 
     }
 
