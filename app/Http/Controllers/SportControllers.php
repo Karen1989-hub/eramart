@@ -16,6 +16,11 @@ class SportControllers extends Controller
             $val = (int)$val;
             return $val/pow(10,(int)strlen(strval($val)));
     }
+    protected function delWInNum($val){
+        $chars = ['w','W'];
+        $val = str_replace($chars,'',$val);
+        return $val;
+    }
     public function nermucum(Request $request){
         // $weightClassDoingCount = marzik::where('weightClass',44)->where('v1_summ',null)->get();
         // if(count($weightClassDoingCount) != 0){
@@ -1719,64 +1724,64 @@ class SportControllers extends Controller
 
         $update=marzik::find($marzikId);
         if($update->v1_1m==0 || $update->v1_1m=="" || $update->v1_1m==null){
-            $update->v1_1m=$this->chengIntToDubl($v1_1m);
+            $update->v1_1m=$v1_1m;
         }
         if($update->v1_2m==0 || $update->v1_2m=="" || $update->v1_2m==null){
-            $update->v1_2m=$this->chengIntToDubl($v1_2m);
+            $update->v1_2m=$v1_2m;
         }
         if($update->v1_3m==0 || $update->v1_3m=="" || $update->v1_3m==null){
-            $update->v1_3m=$this->chengIntToDubl($v1_3m);
+            $update->v1_3m=$v1_3m;
         }
         if($update->v1_record==0 || $update->v1_record=="" || $update->v1_record==null){
-            $update->v1_record=$this->chengIntToDubl($v1_record);
+            $update->v1_record=$v1_record;
         }
         if($update->v2_1m==0 || $update->v2_1m=="" || $update->v2_1m==null){
-            $update->v2_1m=$this->chengIntToDubl($v2_1m);
+            $update->v2_1m=$v2_1m;
         }
         if($update->v2_2m==0 || $update->v2_2m=="" || $update->v2_2m==null){
-            $update->v2_2m=$this->chengIntToDubl($v2_2m);
+            $update->v2_2m=$v2_2m;
         }
         if($update->v2_3m==0 || $update->v2_3m=="" || $update->v2_3m==null){
-            $update->v2_3m=$this->chengIntToDubl($v2_3m);
+            $update->v2_3m=$v2_3m;
         }
         if($update->v2_record==0 || $update->v2_record=="" || $update->v2_record==null){
-            $update->v2_record=$this->chengIntToDubl($v2_record);
+            $update->v2_record=$v2_record;
         }
         if($update->v3_1m==0 || $update->v3_1m=="" || $update->v3_1m==null){
-            $update->v3_1m=$this->chengIntToDubl($v3_1m);
+            $update->v3_1m=$v3_1m;
         }
         if($update->v3_2m==0 || $update->v3_2m=="" || $update->v3_2m==null){
-            $update->v3_2m=$this->chengIntToDubl($v3_2m);
+            $update->v3_2m=$v3_2m;
         }
         if($update->v3_3m==0 || $update->v3_3m=="" || $update->v3_3m==null){
-            $update->v3_3m=$this->chengIntToDubl($v3_3m);
+            $update->v3_3m=$v3_3m;
         }
         if($update->v3_record==0 || $update->v3_record=="" || $update->v3_record==null){
-            $update->v3_record=$this->chengIntToDubl($v3_record);
+            $update->v3_record=$v3_record;
         }
         if($update->v4_1m==0 || $update->v4_1m=="" || $update->v4_1m==null){
-            $update->v4_1m=$this->chengIntToDubl($v4_1m);
+            $update->v4_1m=$v4_1m;
         }
         if($update->v4_2m==0 || $update->v4_2m=="" || $update->v4_2m==null){
-            $update->v4_2m=$this->chengIntToDubl($v4_2m);
+            $update->v4_2m=$v4_2m;
         }
         if($update->v4_3m==0 || $update->v4_3m=="" || $update->v4_3m==null){
-            $update->v4_3m=$this->chengIntToDubl($v4_3m);
+            $update->v4_3m=$v4_3m;
         }
         if($update->v4_record==0 || $update->v4_record=="" || $update->v4_record==null){
-            $update->v4_record=$this->chengIntToDubl($v4_record);
+            $update->v4_record=$v4_record;
         }
         if($update->v5_1m==0 || $update->v5_1m=="" || $update->v5_1m==null){
-            $update->v5_1m=$this->chengIntToDubl($v5_1m);
+            $update->v5_1m=$v5_1m;
         }
         if($update->v5_2m==0 || $update->v5_2m=="" || $update->v5_2m==null){
-            $update->v5_2m=$this->chengIntToDubl($v5_2m);
+            $update->v5_2m=$v5_2m;
         }
         if($update->v5_3m==0 || $update->v5_3m=="" || $update->v5_3m==null){
-            $update->v5_3m=$this->chengIntToDubl($v5_3m);
+            $update->v5_3m=$v5_3m;
         }
         if($update->v5_record==0 || $update->v5_record=="" || $update->v5_record==null){
-            $update->v5_record=$this->chengIntToDubl($v5_record);
+            $update->v5_record=$v5_record;
         }
 
         $update->save();
@@ -1784,18 +1789,18 @@ class SportControllers extends Controller
         $marzik = marzik::find($marzikId);
         $varjut1 = 0;
         if($marzik->v1_1m){
-            if($marzik->v1_1m>$varjut1){
-                $varjut1=$marzik->v1_1m;
+            if($this->delWInNum($marzik->v1_1m)>$varjut1){
+                $varjut1=$this->delWInNum($marzik->v1_1m);
             }
         }
         if($marzik->v1_2m){
-            if($marzik->v1_2m>$varjut1){
-                $varjut1=$marzik->v1_2m;
+            if($this->delWInNum($marzik->v1_2m)>$varjut1){
+                $varjut1=$this->delWInNum($marzik->v1_2m);
             }
         }
         if($marzik->v1_3m){
-            if($marzik->v1_3m>$varjut1){
-                $varjut1=$marzik->v1_3m;
+            if($this->delWInNum($marzik->v1_3m)>$varjut1){
+                $varjut1=$this->delWInNum($marzik->v1_3m);
             }
         }
         $marzik->v1_summ = $varjut1;
@@ -1925,15 +1930,15 @@ class SportControllers extends Controller
 
     public function katarox(Request $request){
         $kataroxId = $request->input('kataroxId');
-
+//        dd($kataroxId);
         $marzik = marzik::all();
         foreach($marzik as $val){
-            $val->performer = false;
+            $val->performer = 0;
             $val->save();
         }
 
         $marzik = marzik::find($kataroxId);
-        $marzik->performer = true;
+        $marzik->performer = 1;
 
         $marzik->save();
 
@@ -1957,12 +1962,7 @@ class SportControllers extends Controller
             $update->mrcColor = "chnshvac";
             $update->save();
         }
-
-
-
-
         return back();
-
     }
     public function monitor(){
         $marzikInfo = marzik::where('performer',1)->first();

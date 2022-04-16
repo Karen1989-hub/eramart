@@ -172,7 +172,7 @@
     <div id="con">
   <div id="img"
   @if(isset($marzikInfo->imgName))
-  style="background-image: url('{{ 'marzikImg/'.$marzikInfo->imgName }}')"
+  style="background-image: url({{asset('marzikImg/'.$marzikInfo->imgName)}})"
   @endif
   ></div>
 
@@ -258,7 +258,6 @@ function f1(){
     let r2=r1%1;
     let r=r1-r2;
         n--;
-
         refreshCounter = localStorage.getItem('refreshCounter');
     if(refreshCounter == 1){
         n=0;
@@ -266,13 +265,9 @@ function f1(){
         // meta.setAtribute('content',3);
         location.reload();
     }
-
-
     if(n==0){
-
         refreshCounter--;
         localStorage.setItem('refreshCounter', refreshCounter);
-
     }
 
     if(n==0 && refreshCounter==1){

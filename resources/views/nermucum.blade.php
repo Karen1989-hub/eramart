@@ -19,10 +19,6 @@
         body{background-color:#FFFAF0;}
         .tr1{background-color:green;}
         .filtr{background-color:#006259;}
-
-
-
-
     </style>
 
 </head>
@@ -3897,7 +3893,8 @@
                 @endif
 
 
-                class="inp56" type="text" name="v1_2m" value="@if($val->v1_2m < 0){{-1*$val->v1_2m}}
+                class="inp56" type="text" name="v1_2m"
+                value="@if($val->v1_2m < 0){{-1*$val->v1_2m}}
             @elseif($val->v1_2m > 0 && $val->v1_2m <= 1)
             <?php
             $nofiltrVal = $val->v1_1m * pow(10,strlen(strval($val->v1_2m))-1);
@@ -3905,6 +3902,7 @@
                 $nofiltrVal = $nofiltrVal/10000;
             }
             echo $nofiltrVal;
+
             ?>
             @else{{$val->v1_2m}} @endif " >
             </td>
